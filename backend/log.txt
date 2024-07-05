@@ -1,0 +1,28 @@
+GET /api/contacts - success - 200 - 10:45:52 AM - 7/5/2024
+GET /api/contacts - success - 200 - 10:49:52 AM - 7/5/2024
+Error occured NotFound: The system cannot find the file specified. (os error 2): readfile 'data.json' - error - 11:09:43 AM - 7/5/2024
+Error occured NotFound: The system cannot find the file specified. (os error 2): readfile 'data.json' - error - 11:10:05 AM - 7/5/2024
+Error occured NotFound: The system cannot find the file specified. (os error 2): readfile 'data.json' - error - 11:13:44 AM - 7/5/2024
+Error occured NotFound: The system cannot find the file specified. (os error 2): readfile 'data.json' - error - 11:13:52 AM - 7/5/2024
+Error occured NotFound: The system cannot find the file specified. (os error 2): readfile 'data.json' - error - 11:14:06 AM - 7/5/2024
+Error occured NotFound: The system cannot find the file specified. (os error 2): readfile 'data.json' - error - 11:14:13 AM - 7/5/2024
+Error occured NotFound: The system cannot find the file specified. (os error 2): readfile 'data.json' - error - 11:14:44 AM - 7/5/2024
+data.json created - success - 11:17:24 AM - 7/5/2024
+data.json found - success - 11:17:33 AM - 7/5/2024
+data.json found - success - 11:17:44 AM - 7/5/2024
+data.json found - success - 11:19:46 AM - 7/5/2024
+data.json found - success - 11:20:12 AM - 7/5/2024
+data.json found - success - 11:21:27 AM - 7/5/2024
+data.json found - success - 11:21:28 AM - 7/5/2024
+data.json found - success - 11:21:40 AM - 7/5/2024
+data.json found - success - 11:21:55 AM - 7/5/2024
+Database data.json found - success - 11:29:39 AM - 7/5/2024
+Database data.json found - success - 11:29:58 AM - 7/5/2024
+Database data.json created - success - 11:30:50 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:31:14 AM - 7/5/2024
+POST /api/contacts - success - 201 - 11:31:19 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:31:20 AM - 7/5/2024
+GET /api/contacts/1 - success - 200 - 11:31:42 AM - 7/5/2024
+POST /api/contacts - success - 201 - 11:32:23 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:32:23 AM - 7/5/2024
+GET /api/contacts/2 - success - 200 - 11:32:27 AM - 7/5/2024

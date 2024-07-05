@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="https://icon.horse/icon/dbdb.io"
+      type="image/x-icon"
+    />
+    <title>Contact Manager</title>
+  </head>
+  <body class="py-10 px-6">
+    <div class="flex justify-between items-center px-8">
+      <button
+        class="group relative inline-flex flex-row-reverse gap-3 items-center overflow-hidden rounded bg-green-600 px-4 py-3 text-white focus:outline-none focus:ring active:bg-green-500"
+        id="download-contacts-btn"
+      >
+        <span class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
+            />
+          </svg>
+        </span>
+
+        <span class="font-medium"> Backup Contacts </span>
+      <button/>
+
+      <button
+        id="add-new-contact-btn"
+        class="group relative inline-flex flex-row-reverse gap-3 items-center overflow-hidden rounded bg-indigo-600 px-4 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500 font-medium"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            d="M5.25 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM2.25 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM18.75 7.5a.75.75 0 0 0-1.5 0v2.25H15a.75.75 0 0 0 0 1.5h2.25v2.25a.75.75 0 0 0 1.5 0v-2.25H21a.75.75 0 0 0 0-1.5h-2.25V7.5Z"
+          />
+        </svg>
+        <span class="">Add new contact</span>
+      </button>
+    </div>
+
+    <!-- Table Section -->
+    <div class="bg-gray-50 pt-3 sm:pt-5 mt-5">
+      <div class="px-4 sm:px-6 lg:px-8 flex justify-between">
+        <div class="text-center">
+          <h2
+            class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+          >
+            Contact List
+          </h2>
+          <!-- <p class="mt-3 text-xl text-gray-500 sm:mt-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus repellat laudantium.</p> -->
+        </div>
+        <!-- Search Bar -->
+        <div class="max-w-3xl w-[24rem]">
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <!-- Search Icon -->
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <svg
+                class="h-5 w-5 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              name="search"
+              id="search-input"
+              class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
+              placeholder="Search by company name"
+            />
+            <!-- cross icon (to clear search) -->
+            <div
+              class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              id="clear-search-btn"
+            >
+              <svg
+                class="h-5 w-5 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex justify-end items-center">
+            <div class="ml-3 relative">
+              <div>
+                <!-- multiple options dropdown -->
+                <label for="options" class="sr-only">Options</label>
+                <select
+                  id="select-filter-options"
+                  name="options"
+                  class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                >
+                  <option value="company">Company</option>
+                  <option value="contactPerson">Contact Person</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- options dropdown -->
+      </div>
+      <div class="mt-10 bg-white pb-12 sm:pb-16">
+        <div class="relative pb-10">
+          <div class="absolute inset-0 bg-gray-50"></div>
+          <div class="relative mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto">
+              <div class="rounded-lg bg-white shadow-lg overflow-x-auto">
+                <table
+                  id="contacts-table"
+                  class="min-w-full divide-y divide-gray-200 px-8"
+                >
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Title
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Contact Person
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Job Title
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Company Name
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Location
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Industry Type
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Official Email ID
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Mobile Number 1
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Mobile Number 2
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200"></tbody>
+                </table>
+                <!-- Pagination component -->
+              </div>
+              <div
+                id="pagination"
+                class="flex items-center justify-center pt-2"
+              >
+                <button
+                  id="pagination-previous"
+                  class="w-10 h-10 text-black grid place-content-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="size-6 ring-0 hover:ring rounded-full ring-gray-400 transition duration-200"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <span id="pagination-value" class="text-center">Page 1</span>
+                <button
+                  id="pagination-next"
+                  class="w-10 h-10 text-black grid place-content-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="size-6 ring-0 hover:ring rounded-full ring-gray-400 transition duration-200"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- add form modal -->
+    <div class="modal micromodal-slide" id="add-form-modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="add-form-modal-title"
+        >
+          <header class="modal__header">
+            <h2 class="modal__title" id="add-form-modal-title">
+              Contact Information
+            </h2>
+            <button
+              class="modal__close"
+              aria-label="Close modal"
+              data-micromodal-close
+            ></button>
+          </header>
+          <main class="modal__content" id="add-form-modal-content">
+            <!-- add form -->
+            <form
+              id="add-form"
+              class="divide-gray-200 ring-1 ring-gray-300 rounded-sm px-6 pb-5 mt-4"
+              method="post"
+            >
+              <div class="divide-y divide-gray-200 sm:space-y-5 pb-5">
+                <div class="space-y-6 pt-4 sm:space-y-5 sm:pt-6">
+                  <div class="space-y-6 sm:space-y-5">
+                    <div
+                      class="hidden sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <!-- ID -->
+                      <label
+                        for="id_"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >ID:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="text"
+                          id="id_"
+                          name="id_"
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm sm:max-w-xs sm:text-sm focus:border-gray-300 focus:ring-transparent bg-gray-300 cursor-not-allowed"
+                          placeholder="AEUI/123456"
+                          disabled
+                        />
+                        <span class="text-xs px-0.5"
+                          >ID will be auto generated</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-gray-200 sm:pt-5"
+                    >
+                      <!-- Title -->
+                      <label
+                        for="title"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Title:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="text"
+                          id="title"
+                          name="title"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                          placeholder="Mr/Ms"
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <!-- Contact Person -->
+                      <label
+                        for="contactPerson"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Contact Person:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="text"
+                          id="contactPerson"
+                          name="contactPerson"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-sm sm:text-sm"
+                          placeholder="John Doe"
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <!-- Job Title -->
+                      <label
+                        for="jobTitle"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Job Title:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="text"
+                          id="jobTitle"
+                          name="jobTitle"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                          placeholder="Software Engineer"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Company Name -->
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <label
+                        for="companyName"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Company Name:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="text"
+                          id="companyName"
+                          name="companyName"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                          placeholder="ABC Pvt. Ltd."
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <label
+                        for="location"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Location:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="text"
+                          id="location"
+                          name="location"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          placeholder="Bangalore, India"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Industry Type -->
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <label
+                        for="industryType"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Industry Type:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="text"
+                          id="industryType"
+                          name="industryType"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                          placeholder="Software Development"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Official Email ID -->
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <label
+                        for="officialEmailId"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Official Email ID:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="email"
+                          id="officialEmailId"
+                          name="officialEmailId"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-md sm:text-sm"
+                          placeholder="8KqzB@example.com"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Mobile Number 1 -->
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <label
+                        for="mobileNumber1"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Mobile Number 1:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="tel"
+                          id="mobileNumber1"
+                          name="mobileNumber1"
+                          required
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                          placeholder="9876543210"
+                          minlength="10"
+                          oninvalid="this.setCustomValidity('Please enter a 10-digit phone number.')"
+                          oninput="this.setCustomValidity('')"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Mobile Number 2 -->
+                    <div
+                      class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                      <label
+                        for="mobileNumber2"
+                        class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >Mobile Number 2:</label
+                      >
+                      <div class="mt-1 sm:col-span-2 sm:mt-0">
+                        <input
+                          type="tel"
+                          id="mobileNumber2"
+                          name="mobileNumber2"
+                          class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                          placeholder="9876543210"
+                          minlength="10"
+                          oninvalid="this.setCustomValidity('Please enter a 10-digit phone number.')"
+                          oninput="this.setCustomValidity('')"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-5">
+                <div class="flex justify-end">
+                  <button
+                    type="button"
+                    class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    id="cancel-add-btn"
+                    data-micromodal-close
+                    aria-label="Close this dialog window"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Add Contact
+                  </button>
+                </div>
+              </div>
+            </form>
+          </main>
+          <!-- <footer class="modal__footer">
+            <button class="modal__btn modal__btn-primary">Continue</button>
+            <button
+              class="modal__btn"
+              data-micromodal-close
+              aria-label="Close this dialog window"
+            >
+              Close
+            </button>
+          </footer> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- edit form modal -->
+    <div class="modal micromodal-slide" id="edit-form-modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="edit-form-modal-title"
+        >
+          <header class="modal__header">
+            <h2 class="modal__title" id="edit-form-modal-title">
+              Edit Information
+            </h2>
+            <button
+              class="modal__close"
+              aria-label="Close modal"
+              data-micromodal-close
+            ></button>
+          </header>
+          <main class="modal__content" id="edit-form-modal-content">
+            <!-- Edit form -->
+            <form
+              id="edit-form"
+              class="divide-y divide-gray-200 space-y-5 ring-1 ring-gray-300 rounded-sm px-6 pb-5 mt-4"
+            >
+              <!-- ID -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="id_"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >ID:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    id="id_"
+                    name="id_"
+                    required
+                    readonly
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm sm:text-sm focus:border-gray-300 focus:ring-transparent bg-gray-300 cursor-not-allowed"
+                    placeholder="123"
+                  />
+                </div>
+              </div>
+
+              <!-- Title -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="title"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Title:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Mr/Ms"
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Person -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="contactPerson"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Contact Person:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    id="contactPerson"
+                    name="contactPerson"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="John Doe"
+                  />
+                </div>
+              </div>
+
+              <!-- Job Title -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="jobTitle"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Job Title:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    id="jobTitle"
+                    name="jobTitle"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Manager"
+                  />
+                </div>
+              </div>
+
+              <!-- Company Name -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="companyName"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Company Name:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="ABC Pvt. Ltd."
+                  />
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="location"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Location:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Mumbai, India"
+                  />
+                </div>
+              </div>
+
+              <!-- Industry Type -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="industryType"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Industry Type:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    id="industryType"
+                    name="industryType"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                    placeholder="Education"
+                  />
+                </div>
+              </div>
+
+              <!-- Official Email ID -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="officialEmailId"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Official Email ID:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="email"
+                    id="officialEmailId"
+                    name="officialEmailId"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-md sm:text-sm"
+                    placeholder="5pJt8@example.com"
+                  />
+                </div>
+              </div>
+
+              <!-- Mobile Number 1 -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="mobileNumber1"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Mobile Number 1:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="tel"
+                    id="mobileNumber1"
+                    name="mobileNumber1"
+                    required
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="9876543210"
+                    minlength="10"
+                    oninvalid="this.setCustomValidity('Please enter a 10-digit phone number.')"
+                    oninput="this.setCustomValidity('')"
+                  />
+                </div>
+              </div>
+
+              <!-- Mobile Number 2 -->
+              <div
+                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5"
+              >
+                <label
+                  for="mobileNumber2"
+                  class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >Mobile Number 2:</label
+                >
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="tel"
+                    id="mobileNumber2"
+                    name="mobileNumber2"
+                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="9876543210"
+                    minlength="10"
+                    oninvalid="this.setCustomValidity('Please enter a 10-digit phone number.')"
+                    oninput="this.setCustomValidity('')"
+                  />
+                </div>
+              </div>
+
+              <!-- <button type="submit">Edit Contact</button>
+        <button type="button" id="cancel-edit-btn">Cancel</button> -->
+
+              <div class="pt-5">
+                <div class="flex justify-end">
+                  <button
+                    type="button"
+                    id="cancel-edit-btn"
+                    class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Edit Contact
+                  </button>
+                </div>
+              </div>
+            </form>
+          </main>
+          <!-- <footer class="modal__footer">
+            <button class="modal__btn modal__btn-primary">Continue</button>
+            <button
+              class="modal__btn"
+              data-micromodal-close
+              aria-label="Close this dialog window"
+            >
+              Close
+            </button>
+          </footer> -->
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/app-deno.js"></script>
+  </body>
+</html>

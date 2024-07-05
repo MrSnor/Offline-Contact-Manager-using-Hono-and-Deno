@@ -1,0 +1,32 @@
+data.json created - success - 11:23:19 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:23:25 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:23:44 AM - 7/5/2024
+POST /api/contacts - success - 201 - 11:23:52 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:23:52 AM - 7/5/2024
+POST /api/contacts - success - 201 - 11:23:58 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:23:58 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:01 AM - 7/5/2024
+POST /api/contacts - success - 201 - 11:24:02 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:02 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:04 AM - 7/5/2024
+POST /api/contacts - success - 201 - 11:24:04 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:04 AM - 7/5/2024
+GET /api/contacts/3 - success - 200 - 11:24:09 AM - 7/5/2024
+DELETE /api/contacts/3 - success - 200 - 11:24:11 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:11 AM - 7/5/2024
+GET /api/contacts/4 - success - 200 - 11:24:12 AM - 7/5/2024
+PUT /api/contacts/4 - success - 200 - 11:24:20 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:20 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:33 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:24:35 AM - 7/5/2024
+Database data.json found - success - 11:27:00 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:27:04 AM - 7/5/2024
+GET /api/contacts/download - success - 200 - 11:27:10 AM - 7/5/2024
+Database data.json found - success - 11:32:36 AM - 7/5/2024
+Database data.json found - success - 11:32:55 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:33:03 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:33:07 AM - 7/5/2024
+GET /api/contacts - success - 200 - 11:33:16 AM - 7/5/2024
+GET /api/contacts/1 - success - 200 - 11:33:57 AM - 7/5/2024
+GET /api/contacts/2 - success - 200 - 11:34:01 AM - 7/5/2024
+GET /api/contacts/download - success - 200 - 11:34:18 AM - 7/5/2024
