@@ -119,6 +119,21 @@ app.post("/api/contacts/add-demo-contacts", async (c) => {
   }
 });
 
+// clear database
+app.delete("/api/contacts/clear", async (c) => {
+  try {
+    await writeJson("data.json", {
+      contactList: [],
+      idCount: 0,
+    });
+    writeToLog(`GET /api/contacts/clear - success - 200`);
+    return c.json({ success: true }, 200);
+  } catch (error) {
+    writeToLog(`GET /api/contacts/clear - error - 500`);
+    return c.json({ error: error }, 500);
+  }
+});
+
 // get all contacts
 app.get("/api/contacts", async (c) => {
   try {

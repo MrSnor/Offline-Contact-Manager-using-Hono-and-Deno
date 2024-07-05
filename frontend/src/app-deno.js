@@ -530,3 +530,29 @@ demoContactsBtn.addEventListener("click", async () => {
     notyf.error("Error adding demo contacts: " + error);
   }
 });
+
+// button for deleting all contacts from database
+const deleteAllBtn = document.getElementById("delete-all-contacts-btn");
+deleteAllBtn.addEventListener("click", async () => {
+  const doYouWantToContinue = confirm(
+    "Are you sure you want to delete all contacts?"
+  );
+  if (doYouWantToContinue) {
+    try {
+      const response = await fetch(`${apiUrl}/clear`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        fetchContactsToHtml();
+        notyf.success("All contacts deleted successfully!");
+      } else {
+        notyf.error("Error deleting contacts: " + response.statusText);
+      }
+    } catch (error) {
+      notyf.error("Error deleting contacts: " + error);
+    }
+  } else {
+    notyf.error("Deletion cancelled.");
+  }
+});
