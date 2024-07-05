@@ -63,6 +63,11 @@ function fetchContactsToHtml(searchValue = "") {
     .then((response) => response.json())
     .then((contacts) => {
       let filteredContacts = contacts;
+      
+      const contactsTable = document.getElementById("contacts-table");
+      // clear contacts table
+      contactsTable.querySelector("tbody").innerHTML = "";
+      
       // Display a message when there are no contacts in the database
       if (filteredContacts.length === 0) {
         const noContactsRow = document.createElement("tr");
@@ -104,9 +109,6 @@ function fetchContactsToHtml(searchValue = "") {
       const startIndex = (pageNumber - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       const paginatedContacts = filteredContacts.slice(startIndex, endIndex);
-
-      const contactsTable = document.getElementById("contacts-table");
-      contactsTable.querySelector("tbody").innerHTML = "";
 
       // Display a message when there are no search matches
       if (paginatedContacts.length === 0) {
