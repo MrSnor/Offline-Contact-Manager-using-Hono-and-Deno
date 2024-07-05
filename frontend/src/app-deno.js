@@ -84,6 +84,9 @@ function fetchContactsToHtml(searchValue = "") {
           .getElementById("contacts-table")
           .querySelector("tbody")
           .appendChild(noContactsRow);
+
+        // make pagination 0
+        paginationValue.textContent = `0 pages`;
         return;
       }
       // Filter contacts based on company value
@@ -515,6 +518,13 @@ downloadBtn.addEventListener("click", downloadContactsData);
 // button for adding demo contacts
 const demoContactsBtn = document.getElementById("add-demo-contacts");
 demoContactsBtn.addEventListener("click", async () => {
+  const doYouWantToContinue = confirm(
+    "Are you sure you want to add demo contacts?"
+  );
+  if (!doYouWantToContinue) {
+    notyf.error("Add demo contacts cancelled.");
+    return;
+  }
   try {
     const response = await fetch(`${apiUrl}/add-demo-contacts`, {
       method: "POST",
