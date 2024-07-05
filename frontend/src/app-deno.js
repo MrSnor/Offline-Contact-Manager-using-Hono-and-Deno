@@ -63,11 +63,11 @@ function fetchContactsToHtml(searchValue = "") {
     .then((response) => response.json())
     .then((contacts) => {
       let filteredContacts = contacts;
-      
+
       const contactsTable = document.getElementById("contacts-table");
       // clear contacts table
       contactsTable.querySelector("tbody").innerHTML = "";
-      
+
       // Display a message when there are no contacts in the database
       if (filteredContacts.length === 0) {
         const noContactsRow = document.createElement("tr");
@@ -511,3 +511,22 @@ function downloadContactsData() {
 }
 
 downloadBtn.addEventListener("click", downloadContactsData);
+
+// button for adding demo contacts
+const demoContactsBtn = document.getElementById("add-demo-contacts");
+demoContactsBtn.addEventListener("click", async () => {
+  try {
+    const response = await fetch(`${apiUrl}/add-demo-contacts`, {
+      method: "POST",
+    });
+
+    if (response.ok) {
+      fetchContactsToHtml();
+      notyf.success("Demo contacts added successfully!");
+    } else {
+      notyf.error("Error adding demo contacts: " + response.statusText);
+    }
+  } catch (error) {
+    notyf.error("Error adding demo contacts: " + error);
+  }
+});

@@ -7,8 +7,8 @@ type ContactType = {
   "location": string;
   "industryType": string;
   "officialEmailId": string;
-  "mobileNumber1": number;
-  "mobileNumber2": number;
+  "mobileNumber1": string;
+  "mobileNumber2": string;
 };
 
 type dbDataType = {

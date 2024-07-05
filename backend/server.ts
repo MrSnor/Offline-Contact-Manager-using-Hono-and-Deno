@@ -11,6 +11,7 @@ import {
 } from "./utils/index.ts";
 import { ContactType, dbDataType } from "./models.ts";
 import { json2csv } from "npm:json-2-csv";
+import { faker } from "https://esm.sh/@faker-js/faker";
 
 const app = new Hono();
 app.use("/api/*", cors());
@@ -73,6 +74,47 @@ app.get("/api/contacts/download", async (c) => {
     return c.body(csvData);
   } catch (error) {
     writeToLog(`GET /api/contacts/download - error - 500`);
+    return c.json({ error: error }, 500);
+  }
+});
+
+// add fake data
+app.post("/api/contacts/add-demo-contacts", async (c) => {
+  try {
+    const dbData = JSON.parse(
+      await Deno.readTextFile("data.json"),
+    ) as dbDataType;
+
+    // add 10 fake contacts
+    let newList = dbData.contactList as ContactType[];
+    for (let i = 0; i < 10; i++) {
+      let fakeContact: ContactType = {
+        "title": faker.person.prefix(),
+        "contactPerson": faker.person.fullName(),
+        "jobTitle": faker.person.jobTitle(),
+        "companyName": faker.company.name(),
+        "location": faker.location.city(),
+        "industryType": faker.company.buzzNoun(),
+        "officialEmailId": faker.internet.email(),
+        "mobileNumber1": faker.phone.number(),
+        "mobileNumber2": faker.phone.number(),
+        "id_": faker.number.int({ min: 1, max: 1000 }).toString(),
+      };
+      fakeContact = {
+        ...fakeContact,
+        "id_": fakeContact.id_.trim(),
+      };
+
+      newList = [...newList, fakeContact];
+    }
+    const newData = { ...dbData, contactList: newList };
+    await writeJson("data.json", newData);
+
+    writeToLog(`GET /api/contacts/add-fake-data - success - 201`);
+
+    return c.json({ success: true }, 201);
+  } catch (error) {
+    writeToLog(`GET /api/contacts/add-fake-data - error - 500`);
     return c.json({ error: error }, 500);
   }
 });
@@ -251,16 +293,16 @@ app.use(
 
 Deno.serve({ port: 3002 }, app.fetch);
 
-// open chrome
-const openChrome = await open("http://localhost:3002", {
-  app: {
-    name: apps.chrome,
-    arguments: ["--incognito"],
-  },
-  wait: true,
-});
+// // open chrome
+// const openChrome = await open("http://localhost:3002", {
+//   app: {
+//     name: apps.chrome,
+//     arguments: ["--incognito"],
+//   },
+//   wait: true,
+// });
 
-// after chrome is closed, exit deno
-if (openChrome.exitCode === 0) {
-  Deno.exit(0);
-}
+// // after chrome is closed, exit deno
+// if (openChrome.exitCode === 0) {
+//   Deno.exit(0);
+// }

@@ -2,11 +2,21 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "npm:@faker-js/faker": "npm:@faker-js/faker@8.4.1",
+      "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:hono": "npm:hono@4.4.8",
       "npm:json-2-csv": "npm:json-2-csv@5.5.1",
       "npm:open": "npm:open@10.1.0"
     },
     "npm": {
+      "@faker-js/faker@8.4.1": {
+        "integrity": "sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==",
+        "dependencies": {}
+      },
+      "@types/node@18.16.19": {
+        "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==",
+        "dependencies": {}
+      },
       "bundle-name@4.1.0": {
         "integrity": "sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==",
         "dependencies": {
@@ -78,7 +88,13 @@
       }
     }
   },
-  "remote": {},
+  "redirects": {
+    "https://esm.sh/@faker-js/faker": "https://esm.sh/@faker-js/faker@8.4.1"
+  },
+  "remote": {
+    "https://esm.sh/@faker-js/faker@8.4.1": "21d589a68f956f90bcf4031bc6f26f5a5c531ca4bd798e16ec33094ea6560bce",
+    "https://esm.sh/v135/@faker-js/faker@8.4.1/denonext/faker.mjs": "bf2af6fc7f2660f80df3c0fda1185082478ef84a73b1aa27ea761977f6fd8426"
+  },
   "workspace": {
     "dependencies": [
       "npm:hono@^4.4.11"
