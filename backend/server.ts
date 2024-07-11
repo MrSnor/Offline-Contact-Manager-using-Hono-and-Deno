@@ -11,9 +11,10 @@ import {
 } from "./utils/index.ts";
 import { ContactType, dbDataType } from "./models.ts";
 import { json2csv } from "npm:json-2-csv";
-import { faker } from "https://esm.sh/@faker-js/faker";
+import { faker } from "npm:@faker-js/faker";
 
 const app = new Hono();
+const PORT = 3002;
 app.use("/api/*", cors());
 app.use(prettyJSON());
 
@@ -306,10 +307,10 @@ app.use(
   }),
 );
 
-Deno.serve({ port: 3002 }, app.fetch);
+Deno.serve({ port: PORT }, app.fetch);
 
 // // open chrome
-// const openChrome = await open("http://localhost:3002", {
+// const openChrome = await open(`http://localhost:${PORT}`, {
 //   app: {
 //     name: apps.chrome,
 //     arguments: ["--incognito"],
