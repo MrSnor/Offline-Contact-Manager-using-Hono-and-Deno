@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev-h": "vite --host",
     "build": "vite build",
-    "build-prod": "vite build --outDir ../output/dist",
+    "build-prod": "vite build --outDir ../output/dist --emptyOutDir",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "debounce": "^2.1.0",
+    "lit-html": "^3.1.4",
     "micromodal": "^0.4.10",
     "notyf": "^3.10.0"
   }

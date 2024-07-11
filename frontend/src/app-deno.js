@@ -3,6 +3,9 @@ import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import MicroModal from "micromodal";
 import debounce from "debounce";
+import "./views/contacts-table"
+import "./views/add-form"
+import "./views/edit-form"
 
 MicroModal.init();
 // Create an instance of Notyf
