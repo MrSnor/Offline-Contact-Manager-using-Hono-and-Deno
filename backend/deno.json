@@ -1,10 +1,14 @@
 {
-  "name": "contact-manager-backend",
+  "name": "@contact-manager/backend",
   "tasks": {
     "start-server": "deno run --allow-net --allow-read --allow-run --allow-write --allow-env --watch --watch-exclude='*.json' ./server.ts",
     "compile-server": "deno compile --output ../output/app --allow-net --allow-read --allow-run --allow-write --allow-env server.ts"
   },
   "imports": {
     "hono": "npm:hono@^4.4.11"
-  }
+  },
+  "exports": {
+    ".": "./output/app.js"
+  },
+  "version": "0.0.1"
 }
