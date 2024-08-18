@@ -1,6 +1,6 @@
 # Offline Contact Manager
 
-Introducing an Offline contact manager using Hono-Deno and no major JS frameworks.
+Introducing an Offline contact manager using Hono-Deno and no javascript frameworks.
 
 It is a simple contact manager that allows you to manage your contacts offline.
 
