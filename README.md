@@ -46,3 +46,11 @@ Note :
 
 - The build files will be in the output folder.
 - The backend is an executable file, so it can only be run on Windows.
+
+## Screenshots
+
+View the screenshots below.
+
+![Contact List](./public/images/contact-list.png)
+
+![Add Contact](./public/images/add-contact.png)
